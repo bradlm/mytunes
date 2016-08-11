@@ -30,6 +30,10 @@
 
         // put the view onto the screen
         $('body').append(appView.render());
+        $('#player').on('ended', function() {
+            //do whatever we need to do for ending and getting next from queue
+          app.nextSong();
+        });
       });
     </script>
   </body>
