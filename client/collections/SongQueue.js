@@ -4,6 +4,8 @@ var SongQueue = Backbone.Collection.extend({
   model: SongModel,
 
   initialize: function() {
+  },
+  playFirst: function() {
+    this.trigger('play', this);
   }
-
 });
