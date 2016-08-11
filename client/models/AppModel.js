@@ -14,13 +14,15 @@ var AppModel = Backbone.Model.extend({
     getting called from the window (unless we override it, as we do here). */
 
 
-    params.library.on('play', function(song) {
+    this.get('library').on('play', function(song) {
       if (!this.get('currentSong') || !this.get('currentSong').get('url')) {
         this.playFirst(song);
       }
       this.get('songQueue').push(song);
-      // this.get('songQueue').view.render();
-      //console.log(this.get('songQueue').at(this.get('songQueue').length - 1).get('title'))
+
+    }, this);
+    this.get('library').on('dequeue', function(song) {
+      this.deQueue(song);
     }, this);
   },
   playFirst: function(song) {
@@ -29,6 +31,12 @@ var AppModel = Backbone.Model.extend({
   nextSong: function() {
     this.get('songQueue').shift();
     this.set('currentSong', this.get('songQueue').at(0));
+  },
+  deQueue: function(song) {
+    this.get('songQueue').remove(song);
+    if (this.get('songQueue').length < 1) {
+      this.set('currentSong', undefined);
+    }
   }
 
 });

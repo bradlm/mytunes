@@ -8,8 +8,8 @@ var SongModel = Backbone.Model.extend({
   enqueue: function() { //may want to break out into seperate function from play, if we want play to change current song while preserving the remaining queue.
     this.trigger('play', this);
   },
-  dequeue: function() {
-    
+  remove: function(e) {
+    this.trigger('dequeue', this);
   }
 
 });
