@@ -1,3 +1,10 @@
+div{
+  background:#668c99;
+}
 td {
   cursor: pointer;
+  background: #c2d6d6;
+}
+body {
+  background: #a3bac2;
 }
